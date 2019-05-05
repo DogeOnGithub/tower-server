@@ -2,6 +2,8 @@ package cn.tjsanshao.mapper;
 
 import cn.tjsanshao.model.BagItem;
 
+import java.util.List;
+
 public interface BagItemMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface BagItemMapper {
     int updateByPrimaryKeySelective(BagItem record);
 
     int updateByPrimaryKey(BagItem record);
+
+    List<BagItem> selectAll();
 }
