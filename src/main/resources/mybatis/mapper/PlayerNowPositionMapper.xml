@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tjsanshao.mapper.PlayerNowPositionMapper" >
+  <resultMap id="BaseResultMap" type="cn.tjsanshao.model.PlayerNowPosition" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="x" property="x" jdbcType="REAL" />
+    <result column="y" property="y" jdbcType="REAL" />
+    <result column="z" property="z" jdbcType="REAL" />
+    <result column="player_id" property="playerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, x, y, z, player_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from player_now_position
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player_now_position
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.tjsanshao.model.PlayerNowPosition" >
+    insert into player_now_position (id, x, y, z, 
+      player_id)
+    values (#{id,jdbcType=INTEGER}, #{x,jdbcType=REAL}, #{y,jdbcType=REAL}, #{z,jdbcType=REAL}, 
+      #{playerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tjsanshao.model.PlayerNowPosition" >
+    insert into player_now_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="z != null" >
+        z,
+      </if>
+      <if test="playerId != null" >
+        player_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=REAL},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=REAL},
+      </if>
+      <if test="z != null" >
+        #{z,jdbcType=REAL},
+      </if>
+      <if test="playerId != null" >
+        #{playerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tjsanshao.model.PlayerNowPosition" >
+    update player_now_position
+    <set >
+      <if test="x != null" >
+        x = #{x,jdbcType=REAL},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=REAL},
+      </if>
+      <if test="z != null" >
+        z = #{z,jdbcType=REAL},
+      </if>
+      <if test="playerId != null" >
+        player_id = #{playerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tjsanshao.model.PlayerNowPosition" >
+    update player_now_position
+    set x = #{x,jdbcType=REAL},
+      y = #{y,jdbcType=REAL},
+      z = #{z,jdbcType=REAL},
+      player_id = #{playerId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

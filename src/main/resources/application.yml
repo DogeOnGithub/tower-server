@@ -1,2 +1,14 @@
 server:
   port: 10099
+
+spring:
+  datasource:
+    url: jdbc:mysql://120.79.74.174:3306/tower_db?serverTimezone=Asia/Shanghai&useAffectedRows=true
+    username: xiaojian
+    password: xiaojian
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations:
+    - classpath:mybatis/mapper/*

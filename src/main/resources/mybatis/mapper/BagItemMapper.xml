@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tjsanshao.mapper.BagItemMapper" >
+  <resultMap id="BaseResultMap" type="cn.tjsanshao.model.BagItem" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bag_item_name" property="bagItemName" jdbcType="VARCHAR" />
+    <result column="bag_item_desc" property="bagItemDesc" jdbcType="VARCHAR" />
+    <result column="bag_item_sprite_name" property="bagItemSpriteName" jdbcType="VARCHAR" />
+    <result column="bag_item_type" property="bagItemType" jdbcType="TINYINT" />
+    <result column="bag_item_sale_price" property="bagItemSalePrice" jdbcType="DECIMAL" />
+    <result column="bag_item_buy_price" property="bagItemBuyPrice" jdbcType="DECIMAL" />
+    <result column="bag_item_recover_value" property="bagItemRecoverValue" jdbcType="INTEGER" />
+    <result column="bag_item_drug_type" property="bagItemDrugType" jdbcType="TINYINT" />
+    <result column="bag_item_recover" property="bagItemRecover" jdbcType="VARCHAR" />
+    <result column="bag_item_skill_duration" property="bagItemSkillDuration" jdbcType="REAL" />
+    <result column="bag_item_skill_value" property="bagItemSkillValue" jdbcType="REAL" />
+    <result column="bag_item_skill" property="bagItemSkill" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bag_item_name, bag_item_desc, bag_item_sprite_name, bag_item_type, bag_item_sale_price, 
+    bag_item_buy_price, bag_item_recover_value, bag_item_drug_type, bag_item_recover, 
+    bag_item_skill_duration, bag_item_skill_value, bag_item_skill
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bag_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bag_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.tjsanshao.model.BagItem" >
+    insert into bag_item (id, bag_item_name, bag_item_desc, 
+      bag_item_sprite_name, bag_item_type, bag_item_sale_price, 
+      bag_item_buy_price, bag_item_recover_value, bag_item_drug_type, 
+      bag_item_recover, bag_item_skill_duration, bag_item_skill_value, 
+      bag_item_skill)
+    values (#{id,jdbcType=INTEGER}, #{bagItemName,jdbcType=VARCHAR}, #{bagItemDesc,jdbcType=VARCHAR}, 
+      #{bagItemSpriteName,jdbcType=VARCHAR}, #{bagItemType,jdbcType=TINYINT}, #{bagItemSalePrice,jdbcType=DECIMAL}, 
+      #{bagItemBuyPrice,jdbcType=DECIMAL}, #{bagItemRecoverValue,jdbcType=INTEGER}, #{bagItemDrugType,jdbcType=TINYINT}, 
+      #{bagItemRecover,jdbcType=VARCHAR}, #{bagItemSkillDuration,jdbcType=REAL}, #{bagItemSkillValue,jdbcType=REAL}, 
+      #{bagItemSkill,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tjsanshao.model.BagItem" >
+    insert into bag_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bagItemName != null" >
+        bag_item_name,
+      </if>
+      <if test="bagItemDesc != null" >
+        bag_item_desc,
+      </if>
+      <if test="bagItemSpriteName != null" >
+        bag_item_sprite_name,
+      </if>
+      <if test="bagItemType != null" >
+        bag_item_type,
+      </if>
+      <if test="bagItemSalePrice != null" >
+        bag_item_sale_price,
+      </if>
+      <if test="bagItemBuyPrice != null" >
+        bag_item_buy_price,
+      </if>
+      <if test="bagItemRecoverValue != null" >
+        bag_item_recover_value,
+      </if>
+      <if test="bagItemDrugType != null" >
+        bag_item_drug_type,
+      </if>
+      <if test="bagItemRecover != null" >
+        bag_item_recover,
+      </if>
+      <if test="bagItemSkillDuration != null" >
+        bag_item_skill_duration,
+      </if>
+      <if test="bagItemSkillValue != null" >
+        bag_item_skill_value,
+      </if>
+      <if test="bagItemSkill != null" >
+        bag_item_skill,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bagItemName != null" >
+        #{bagItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemDesc != null" >
+        #{bagItemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemSpriteName != null" >
+        #{bagItemSpriteName,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemType != null" >
+        #{bagItemType,jdbcType=TINYINT},
+      </if>
+      <if test="bagItemSalePrice != null" >
+        #{bagItemSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bagItemBuyPrice != null" >
+        #{bagItemBuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bagItemRecoverValue != null" >
+        #{bagItemRecoverValue,jdbcType=INTEGER},
+      </if>
+      <if test="bagItemDrugType != null" >
+        #{bagItemDrugType,jdbcType=TINYINT},
+      </if>
+      <if test="bagItemRecover != null" >
+        #{bagItemRecover,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemSkillDuration != null" >
+        #{bagItemSkillDuration,jdbcType=REAL},
+      </if>
+      <if test="bagItemSkillValue != null" >
+        #{bagItemSkillValue,jdbcType=REAL},
+      </if>
+      <if test="bagItemSkill != null" >
+        #{bagItemSkill,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.tjsanshao.model.BagItem" >
+    update bag_item
+    <set >
+      <if test="bagItemName != null" >
+        bag_item_name = #{bagItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemDesc != null" >
+        bag_item_desc = #{bagItemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemSpriteName != null" >
+        bag_item_sprite_name = #{bagItemSpriteName,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemType != null" >
+        bag_item_type = #{bagItemType,jdbcType=TINYINT},
+      </if>
+      <if test="bagItemSalePrice != null" >
+        bag_item_sale_price = #{bagItemSalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bagItemBuyPrice != null" >
+        bag_item_buy_price = #{bagItemBuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bagItemRecoverValue != null" >
+        bag_item_recover_value = #{bagItemRecoverValue,jdbcType=INTEGER},
+      </if>
+      <if test="bagItemDrugType != null" >
+        bag_item_drug_type = #{bagItemDrugType,jdbcType=TINYINT},
+      </if>
+      <if test="bagItemRecover != null" >
+        bag_item_recover = #{bagItemRecover,jdbcType=VARCHAR},
+      </if>
+      <if test="bagItemSkillDuration != null" >
+        bag_item_skill_duration = #{bagItemSkillDuration,jdbcType=REAL},
+      </if>
+      <if test="bagItemSkillValue != null" >
+        bag_item_skill_value = #{bagItemSkillValue,jdbcType=REAL},
+      </if>
+      <if test="bagItemSkill != null" >
+        bag_item_skill = #{bagItemSkill,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.tjsanshao.model.BagItem" >
+    update bag_item
+    set bag_item_name = #{bagItemName,jdbcType=VARCHAR},
+      bag_item_desc = #{bagItemDesc,jdbcType=VARCHAR},
+      bag_item_sprite_name = #{bagItemSpriteName,jdbcType=VARCHAR},
+      bag_item_type = #{bagItemType,jdbcType=TINYINT},
+      bag_item_sale_price = #{bagItemSalePrice,jdbcType=DECIMAL},
+      bag_item_buy_price = #{bagItemBuyPrice,jdbcType=DECIMAL},
+      bag_item_recover_value = #{bagItemRecoverValue,jdbcType=INTEGER},
+      bag_item_drug_type = #{bagItemDrugType,jdbcType=TINYINT},
+      bag_item_recover = #{bagItemRecover,jdbcType=VARCHAR},
+      bag_item_skill_duration = #{bagItemSkillDuration,jdbcType=REAL},
+      bag_item_skill_value = #{bagItemSkillValue,jdbcType=REAL},
+      bag_item_skill = #{bagItemSkill,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
