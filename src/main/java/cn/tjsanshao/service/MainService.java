@@ -10,7 +10,14 @@ public interface MainService {
     boolean savePlayer(Player player);
     boolean savePlayerAndAttributeAndPosAndScene(Player player, CharacterAttribute attribute, PlayerNowPosition position, PlayerNowScene scene);
     boolean updatePlayerAndAttributeAndPosAndScene(Player player, CharacterAttribute attribute, PlayerNowPosition position, PlayerNowScene scene);
-    boolean deletePlayerById(Integer id);
 
     List<BagItem> listAllItems();
+
+    PlayerNowPosition getPlayerPosition(Integer playerId);
+
+    PlayerNowScene getPlayerNowScene(Integer playerId);
+
+    List<PlayerItem> listPlayerItems(Integer playerId);
+
+    CharacterAttribute getCharacterAttribute(Integer playerId);
 }

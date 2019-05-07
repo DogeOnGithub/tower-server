@@ -1,7 +1,6 @@
 package cn.tjsanshao.service.serviceImpl;
 
-import cn.tjsanshao.mapper.BagItemMapper;
-import cn.tjsanshao.mapper.PlayerMapper;
+import cn.tjsanshao.mapper.*;
 import cn.tjsanshao.model.*;
 import cn.tjsanshao.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,18 @@ public class MainServiceImpl implements MainService {
 
     @Autowired
     private BagItemMapper bagItemMapper;
+
+    @Autowired
+    private PlayerNowPositionMapper playerNowPositionMapper;
+
+    @Autowired
+    private PlayerNowSceneMapper playerNowSceneMapper;
+
+    @Autowired
+    private PlayerItemMapper playerItemMapper;
+
+    @Autowired
+    private CharacterAttributeMapper characterAttributeMapper;
 
     @Override
     public Player getPlayerById(Integer id) {
@@ -61,12 +72,27 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public boolean deletePlayerById(Integer id) {
-        return false;
+    public List<BagItem> listAllItems() {
+        return bagItemMapper.selectAll();
     }
 
     @Override
-    public List<BagItem> listAllItems() {
-        return bagItemMapper.selectAll();
+    public PlayerNowPosition getPlayerPosition(Integer playerId) {
+        return playerNowPositionMapper.selectByPlayer(playerId);
+    }
+
+    @Override
+    public PlayerNowScene getPlayerNowScene(Integer playerId) {
+        return playerNowSceneMapper.selectByPlayer(playerId);
+    }
+
+    @Override
+    public List<PlayerItem> listPlayerItems(Integer playerId) {
+        return playerItemMapper.selectByPlayer(playerId);
+    }
+
+    @Override
+    public CharacterAttribute getCharacterAttribute(Integer playerId) {
+        return characterAttributeMapper.selectByPlayer(playerId);
     }
 }

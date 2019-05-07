@@ -6,9 +6,9 @@ import lombok.Data;
 public class CharacterAttribute {
     private Integer id;
 
-    private Integer playerId;
-
     private Float playerLife;
 
     private Float playerCoin;
+
+    private Integer playerId;
 }

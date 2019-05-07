@@ -14,4 +14,6 @@ public interface PlayerNowPositionMapper {
     int updateByPrimaryKeySelective(PlayerNowPosition record);
 
     int updateByPrimaryKey(PlayerNowPosition record);
+
+    PlayerNowPosition selectByPlayer(Integer playerId);
 }

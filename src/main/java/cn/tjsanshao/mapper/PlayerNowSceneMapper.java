@@ -14,4 +14,6 @@ public interface PlayerNowSceneMapper {
     int updateByPrimaryKeySelective(PlayerNowScene record);
 
     int updateByPrimaryKey(PlayerNowScene record);
+
+    PlayerNowScene selectByPlayer(Integer playerId);
 }

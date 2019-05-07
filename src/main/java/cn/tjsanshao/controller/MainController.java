@@ -50,10 +50,32 @@ public class MainController {
         return JsonResponseUtil.transferToJSONResponse(ResponseStrings.STATE_SUCCESS, ResponseStrings.MESSAGE_SUCCESS, null);
     }
 
-    // 获取所有物品
+    // 获取所有物品，用户物品系统的初始化
     @RequestMapping(value = "/items", method = {RequestMethod.GET, RequestMethod.POST})
     public String allBagItems() {
         return JsonResponseUtil.transferJSON(mainService.listAllItems());
+    }
+
+    // 获取主角当前位置
+    @RequestMapping(value = "/position", method = {RequestMethod.GET, RequestMethod.POST})
+    public String position(Integer player) {
+        return JsonResponseUtil.transferJSON(mainService.getPlayerPosition(player));
+    }
+
+    // 获取主角所在的关卡
+    @RequestMapping(value = "/scene", method = {RequestMethod.GET, RequestMethod.POST})
+    public String scene(Integer player) {
+        return JsonResponseUtil.transferJSON(mainService.getPlayerNowScene(player));
+    }
+
+    @RequestMapping(value = "/my_items", method = {RequestMethod.GET, RequestMethod.POST})
+    public String playerItems(Integer player) {
+        return JsonResponseUtil.transferJSON(mainService.listPlayerItems(player));
+    }
+
+    @RequestMapping(value = "/attribute", method = {RequestMethod.GET, RequestMethod.POST})
+    public String attribute(Integer player) {
+        return JsonResponseUtil.transferJSON(mainService.getCharacterAttribute(player));
     }
 
 }

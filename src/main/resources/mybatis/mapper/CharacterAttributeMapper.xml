@@ -3,12 +3,12 @@
 <mapper namespace="cn.tjsanshao.mapper.CharacterAttributeMapper" >
   <resultMap id="BaseResultMap" type="cn.tjsanshao.model.CharacterAttribute" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="player_id" property="playerId" jdbcType="INTEGER" />
     <result column="player_life" property="playerLife" jdbcType="REAL" />
     <result column="player_coin" property="playerCoin" jdbcType="REAL" />
+    <result column="player_id" property="playerId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, player_id, player_life, player_coin
+    id, player_life, player_coin, player_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -16,15 +16,25 @@
     from character_attribute
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!-- -->
+  <select id="selectByPlayer" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from character_attribute
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </select>
+  <!-- -->
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from character_attribute
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.tjsanshao.model.CharacterAttribute" >
-    insert into character_attribute (id, player_id, player_life, 
-      player_coin)
-    values (#{id,jdbcType=INTEGER}, #{playerId,jdbcType=INTEGER}, #{playerLife,jdbcType=REAL}, 
-      #{playerCoin,jdbcType=REAL})
+    insert into character_attribute (id, player_life, player_coin, 
+      player_id)
+    values (#{id,jdbcType=INTEGER}, #{playerLife,jdbcType=REAL}, #{playerCoin,jdbcType=REAL}, 
+      #{playerId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.tjsanshao.model.CharacterAttribute" >
     insert into character_attribute
@@ -32,22 +42,19 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="playerId != null" >
-        player_id,
-      </if>
       <if test="playerLife != null" >
         player_life,
       </if>
       <if test="playerCoin != null" >
         player_coin,
       </if>
+      <if test="playerId != null" >
+        player_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="playerId != null" >
-        #{playerId,jdbcType=INTEGER},
       </if>
       <if test="playerLife != null" >
         #{playerLife,jdbcType=REAL},
@@ -55,28 +62,31 @@
       <if test="playerCoin != null" >
         #{playerCoin,jdbcType=REAL},
       </if>
+      <if test="playerId != null" >
+        #{playerId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.tjsanshao.model.CharacterAttribute" >
     update character_attribute
     <set >
-      <if test="playerId != null" >
-        player_id = #{playerId,jdbcType=INTEGER},
-      </if>
       <if test="playerLife != null" >
         player_life = #{playerLife,jdbcType=REAL},
       </if>
       <if test="playerCoin != null" >
         player_coin = #{playerCoin,jdbcType=REAL},
       </if>
+      <if test="playerId != null" >
+        player_id = #{playerId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.tjsanshao.model.CharacterAttribute" >
     update character_attribute
-    set player_id = #{playerId,jdbcType=INTEGER},
-      player_life = #{playerLife,jdbcType=REAL},
-      player_coin = #{playerCoin,jdbcType=REAL}
+    set player_life = #{playerLife,jdbcType=REAL},
+      player_coin = #{playerCoin,jdbcType=REAL},
+      player_id = #{playerId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
