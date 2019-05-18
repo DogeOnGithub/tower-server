@@ -2,6 +2,7 @@ package cn.tjsanshao;
 
 import cn.tjsanshao.mapper.PlayerMapper;
 import cn.tjsanshao.mapper.PlayerNowSceneMapper;
+import cn.tjsanshao.mapper.PlayerSkillMapper;
 import cn.tjsanshao.model.Player;
 import cn.tjsanshao.model.PlayerNowScene;
 import org.junit.Ignore;
@@ -20,6 +21,9 @@ public class TowerApplicationTests {
 
 	@Autowired
 	private PlayerNowSceneMapper playerNowSceneMapper;
+
+	@Autowired
+	private PlayerSkillMapper playerSkillMapper;
 
 	@Test
 	public void contextLoads() {
@@ -43,5 +47,10 @@ public class TowerApplicationTests {
 	@Test
 	public void testPlayerNowSceneMapper() {
 		System.out.println(playerNowSceneMapper.selectByPrimaryKey(1));
+	}
+
+	@Test
+	public void testPlayerSKillMapper() {
+		System.out.println(playerSkillMapper.listPlayerSkillByPlayer(1));
 	}
 }

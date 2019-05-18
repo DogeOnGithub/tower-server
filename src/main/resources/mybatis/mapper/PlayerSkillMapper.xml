@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tjsanshao.mapper.PlayerSkillMapper" >
+  <resultMap id="BaseResultMap" type="cn.tjsanshao.model.PlayerSkill" >
+    <result column="player_id" property="playerId" jdbcType="INTEGER" />
+    <result column="skill" property="skill" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="listPlayerSkillByPlayer" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select player_id, skill from player_skill where player_id = #{playerId,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="cn.tjsanshao.model.PlayerSkill" >
+    insert into player_skill (player_id, skill)
+    values (#{playerId,jdbcType=INTEGER}, #{skill,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.tjsanshao.model.PlayerSkill" >
+    insert into player_skill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="playerId != null" >
+        player_id,
+      </if>
+      <if test="skill != null" >
+        skill,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="playerId != null" >
+        #{playerId,jdbcType=INTEGER},
+      </if>
+      <if test="skill != null" >
+        #{skill,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
