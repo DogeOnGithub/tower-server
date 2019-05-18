@@ -10,6 +10,10 @@
     select player_id, skill from player_skill where player_id = #{playerId,jdbcType=INTEGER}
   </select>
 
+  <delete id="deleteByPlayer" parameterType="java.lang.Integer">
+    delete from player_skill where player_id = #{jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="cn.tjsanshao.model.PlayerSkill" >
     insert into player_skill (player_id, skill)
     values (#{playerId,jdbcType=INTEGER}, #{skill,jdbcType=VARCHAR})

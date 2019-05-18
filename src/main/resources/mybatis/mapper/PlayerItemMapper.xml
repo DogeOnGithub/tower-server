@@ -10,6 +10,10 @@
     select player_id, item_id from player_item where player_id = #{playerId,jdbcType=INTEGER}
   </select>
 
+  <delete id="deleteByPlayer" parameterType="java.lang.Integer">
+    delete from player_item where player_id = #{playerId,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="cn.tjsanshao.model.PlayerItem" >
     insert into player_item (player_id, item_id)
     values (#{playerId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER})

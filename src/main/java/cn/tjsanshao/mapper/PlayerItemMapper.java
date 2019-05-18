@@ -10,4 +10,6 @@ public interface PlayerItemMapper {
     int insertSelective(PlayerItem record);
 
     List<PlayerItem> selectByPlayer(Integer playerId);
+
+    int deleteByPlayer(Integer playerId);
 }

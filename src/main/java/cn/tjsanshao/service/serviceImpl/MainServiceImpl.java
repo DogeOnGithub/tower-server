@@ -5,6 +5,7 @@ import cn.tjsanshao.model.*;
 import cn.tjsanshao.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -72,6 +73,33 @@ public class MainServiceImpl implements MainService {
     @Override
     public boolean updatePlayerAndAttributeAndPosAndScene(Player player, CharacterAttribute attribute, PlayerNowPosition position, PlayerNowScene scene) {
         return false;
+    }
+
+    @Transactional
+    @Override
+    public boolean savePlayerBagAndSkill(Integer playerId, List<Integer> items, List<String> skills) {
+
+        // 根据player_id清空player_item和player_skill表
+        playerItemMapper.deleteByPlayer(playerId);
+        playerSkillMapper.deleteByPlayer(playerId);
+
+        // 重新插入items新的数据
+        for (int i = 0; i < items.size(); i++) {
+            PlayerItem item = new PlayerItem();
+            item.setPlayerId(playerId);
+            item.setItemId(items.get(i));
+            playerItemMapper.insertSelective(item);
+        }
+
+        // 重新插入skills新的数据
+        for (int i = 0; i < skills.size(); i++) {
+            PlayerSkill skill = new PlayerSkill();
+            skill.setPlayerId(playerId);
+            skill.setSkill(skills.get(i));
+            playerSkillMapper.insertSelective(skill);
+        }
+
+        return true;
     }
 
     @Override

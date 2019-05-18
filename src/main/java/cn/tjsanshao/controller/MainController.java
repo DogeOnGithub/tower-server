@@ -1,12 +1,16 @@
 package cn.tjsanshao.controller;
 
 import cn.tjsanshao.model.Player;
+import cn.tjsanshao.model.PlayerNowPosition;
 import cn.tjsanshao.service.MainService;
 import cn.tjsanshao.utils.JsonResponseUtil;
 import cn.tjsanshao.utils.ResponseStrings;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /*
  * @Project:tower-server
@@ -84,6 +88,20 @@ public class MainController {
     @RequestMapping(value = "/skills", method = {RequestMethod.GET, RequestMethod.POST})
     public String skills(Integer player) {
         return JsonResponseUtil.transferJSON(mainService.listPlayerSkill(player));
+    }
+
+    // 保存技能以及背包
+    @RequestMapping(value = "/saveSkillAndBag", method = {RequestMethod.GET, RequestMethod.POST})
+    public String saveSkillAndBag(@RequestParam("player") Integer player, @RequestParam("item") List<Integer> items, @RequestParam("skill") List<String> skills) {
+
+        System.out.println(items);
+        System.out.println(skills);
+
+        boolean result = mainService.savePlayerBagAndSkill(player, items, skills);
+        if (result) {
+            return JsonResponseUtil.transferToJSONResponse(ResponseStrings.STATE_SUCCESS, ResponseStrings.MESSAGE_SUCCESS, null);
+        }
+        return JsonResponseUtil.transferToJSONResponse(ResponseStrings.STATE_FAIL, ResponseStrings.MESSAGE_FAIL, null);
     }
 
 }
