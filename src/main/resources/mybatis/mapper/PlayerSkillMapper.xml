@@ -6,7 +6,7 @@
     <result column="skill" property="skill" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="listPlayerSkillByPlayer" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPlayer" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select player_id, skill from player_skill where player_id = #{playerId,jdbcType=INTEGER}
   </select>
 

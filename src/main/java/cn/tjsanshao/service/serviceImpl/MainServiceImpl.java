@@ -36,6 +36,9 @@ public class MainServiceImpl implements MainService {
     @Autowired
     private CharacterAttributeMapper characterAttributeMapper;
 
+    @Autowired
+    private PlayerSkillMapper playerSkillMapper;
+
     @Override
     public Player getPlayerById(Integer id) {
         return null;
@@ -94,5 +97,10 @@ public class MainServiceImpl implements MainService {
     @Override
     public CharacterAttribute getCharacterAttribute(Integer playerId) {
         return characterAttributeMapper.selectByPlayer(playerId);
+    }
+
+    @Override
+    public List<PlayerSkill> listPlayerSkill(Integer playerId) {
+        return playerSkillMapper.selectByPlayer(playerId);
     }
 }

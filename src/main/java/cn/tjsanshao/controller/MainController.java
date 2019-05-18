@@ -68,14 +68,22 @@ public class MainController {
         return JsonResponseUtil.transferJSON(mainService.getPlayerNowScene(player));
     }
 
+    // 获取主角的物品
     @RequestMapping(value = "/my_items", method = {RequestMethod.GET, RequestMethod.POST})
     public String playerItems(Integer player) {
         return JsonResponseUtil.transferJSON(mainService.listPlayerItems(player));
     }
 
+    // 获取主角的属性
     @RequestMapping(value = "/attribute", method = {RequestMethod.GET, RequestMethod.POST})
     public String attribute(Integer player) {
         return JsonResponseUtil.transferJSON(mainService.getCharacterAttribute(player));
+    }
+
+    // 获取主角的技能
+    @RequestMapping(value = "/skills", method = {RequestMethod.GET, RequestMethod.POST})
+    public String skills(Integer player) {
+        return JsonResponseUtil.transferJSON(mainService.listPlayerSkill(player));
     }
 
 }

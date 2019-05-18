@@ -51,6 +51,6 @@ public class TowerApplicationTests {
 
 	@Test
 	public void testPlayerSKillMapper() {
-		System.out.println(playerSkillMapper.listPlayerSkillByPlayer(1));
+		System.out.println(playerSkillMapper.selectByPlayer(1));
 	}
 }

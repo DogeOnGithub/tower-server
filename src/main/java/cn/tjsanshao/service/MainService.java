@@ -20,4 +20,6 @@ public interface MainService {
     List<PlayerItem> listPlayerItems(Integer playerId);
 
     CharacterAttribute getCharacterAttribute(Integer playerId);
+
+    List<PlayerSkill> listPlayerSkill(Integer playerId);
 }

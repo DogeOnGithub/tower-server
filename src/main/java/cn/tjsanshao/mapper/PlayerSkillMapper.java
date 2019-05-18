@@ -9,5 +9,5 @@ public interface PlayerSkillMapper {
 
     int insertSelective(PlayerSkill record);
 
-    List<PlayerSkill> listPlayerSkillByPlayer(Integer playerId);
+    List<PlayerSkill> selectByPlayer(Integer playerId);
 }
