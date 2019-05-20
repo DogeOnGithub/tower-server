@@ -16,4 +16,6 @@ public interface CharacterAttributeMapper {
     int updateByPrimaryKey(CharacterAttribute record);
 
     CharacterAttribute selectByPlayer(Integer playerId);
+
+    int updateByPlayerSelective(CharacterAttribute record);
 }

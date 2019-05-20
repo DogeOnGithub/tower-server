@@ -24,6 +24,19 @@
     from character_attribute
     where player_id = #{playerId,jdbcType=INTEGER}
   </select>
+
+  <update id="updateByPlayerSelective" parameterType="cn.tjsanshao.model.CharacterAttribute" >
+    update character_attribute
+    <set >
+      <if test="playerLife != null" >
+        player_life = #{playerLife,jdbcType=REAL},
+      </if>
+      <if test="playerCoin != null" >
+        player_coin = #{playerCoin,jdbcType=REAL},
+      </if>
+    </set>
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </update>
   <!-- -->
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

@@ -102,6 +102,21 @@ public class MainServiceImpl implements MainService {
         return true;
     }
 
+    @Transactional
+    @Override
+    public boolean savePlayerBagAndSkill(Integer playerId, List<Integer> items, List<String> skills, float life, float coin) {
+
+        CharacterAttribute characterAttribute = new CharacterAttribute();
+        characterAttribute.setPlayerId(playerId);
+        characterAttribute.setPlayerLife(life);
+        characterAttribute.setPlayerCoin(coin);
+        characterAttributeMapper.updateByPlayerSelective(characterAttribute);
+
+        savePlayerBagAndSkill(playerId, items, skills);
+
+        return true;
+    }
+
     @Override
     public List<BagItem> listAllItems() {
         return bagItemMapper.selectAll();

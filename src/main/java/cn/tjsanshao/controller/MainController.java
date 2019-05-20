@@ -93,8 +93,8 @@ public class MainController {
 
     // 保存技能以及背包
     @RequestMapping(value = "/saveSkillAndBag", method = {RequestMethod.GET, RequestMethod.POST})
-    public String saveSkillAndBag(@RequestParam("player") Integer player, @RequestParam("item") List<Integer> items, @RequestParam("skill") List<String> skills) {
-        boolean result = mainService.savePlayerBagAndSkill(player, items, skills);
+    public String saveSkillAndBag(@RequestParam("player") Integer player, @RequestParam("item") List<Integer> items, @RequestParam("skill") List<String> skills, @RequestParam("life") float life, @RequestParam("coin") float coin) {
+        boolean result = mainService.savePlayerBagAndSkill(player, items, skills, life, coin);
         if (result) {
             return JsonResponseUtil.transferToJSONResponse(ResponseStrings.STATE_SUCCESS, ResponseStrings.MESSAGE_SUCCESS, null);
         }

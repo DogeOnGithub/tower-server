@@ -11,6 +11,7 @@ public interface MainService {
     boolean savePlayerAndAttributeAndPosAndScene(Player player, CharacterAttribute attribute, PlayerNowPosition position, PlayerNowScene scene);
     boolean updatePlayerAndAttributeAndPosAndScene(Player player, CharacterAttribute attribute, PlayerNowPosition position, PlayerNowScene scene);
     boolean savePlayerBagAndSkill(Integer playerId, List<Integer> items, List<String> skills);
+    boolean savePlayerBagAndSkill(Integer playerId, List<Integer> items, List<String> skills, float life, float coin);
 
     List<BagItem> listAllItems();
 
