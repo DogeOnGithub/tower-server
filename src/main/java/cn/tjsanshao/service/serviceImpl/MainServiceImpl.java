@@ -83,20 +83,24 @@ public class MainServiceImpl implements MainService {
         playerItemMapper.deleteByPlayer(playerId);
         playerSkillMapper.deleteByPlayer(playerId);
 
-        // 重新插入items新的数据
-        for (int i = 0; i < items.size(); i++) {
-            PlayerItem item = new PlayerItem();
-            item.setPlayerId(playerId);
-            item.setItemId(items.get(i));
-            playerItemMapper.insertSelective(item);
+        if (items != null) {
+            // 重新插入items新的数据
+            for (int i = 0; i < items.size(); i++) {
+                PlayerItem item = new PlayerItem();
+                item.setPlayerId(playerId);
+                item.setItemId(items.get(i));
+                playerItemMapper.insertSelective(item);
+            }
         }
 
-        // 重新插入skills新的数据
-        for (int i = 0; i < skills.size(); i++) {
-            PlayerSkill skill = new PlayerSkill();
-            skill.setPlayerId(playerId);
-            skill.setSkill(skills.get(i));
-            playerSkillMapper.insertSelective(skill);
+        if (skills != null) {
+            // 重新插入skills新的数据
+            for (int i = 0; i < skills.size(); i++) {
+                PlayerSkill skill = new PlayerSkill();
+                skill.setPlayerId(playerId);
+                skill.setSkill(skills.get(i));
+                playerSkillMapper.insertSelective(skill);
+            }
         }
 
         return true;
